@@ -4,4 +4,10 @@
     <string name="title_payflows">Payflows</string>
     <string name="title_account">Account</string>
     <string name="create_account">Create Account</string>
+
+    <string name="title_activity_create_payment">CreatePayment</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="payment_name_text">I\'m paying</string>
+    <string name="payment_amount_text">$</string>
 </resources>
