@@ -1,14 +1,21 @@
 package com.example.recur;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.JsonWriter;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -27,14 +34,15 @@ import java.util.List;
 
 
 public class CreatePayment extends AppCompatActivity {
-
-    private StorageReference mStorageRef;
+    DatabaseReference payments;
+    List<Payment> payList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_payment);
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        this.payments = database.getReference("payments");
     }
 
     public void setPaymentValues(View view) {
@@ -59,17 +67,7 @@ public class CreatePayment extends AppCompatActivity {
 
             Payment newPayment = new Payment(name, amount, interval, startDate, endDate, category);
 
-            File dataFile = new File("PaymentData.txt");
-            if (!dataFile.createNewFile()) {
-                String currentPath = dataFile.getAbsolutePath();
-                List<Payment> payments = this.readJsonStream(new FileInputStream(currentPath));
-                payments.add(newPayment);
-            }
-            List<Payment> payments = new ArrayList<>();
-            payments.add(newPayment);
-            String currentPath = dataFile.getAbsolutePath();
-
-            this.writeJsonStream(new FileOutputStream(currentPath), payments);
+            this.writeNewPayment(newPayment);
 
             // TODO: 10/13/2019
             // Write payment to file here
@@ -82,6 +80,22 @@ public class CreatePayment extends AppCompatActivity {
             errorSnackbar.show();
         }
     }
+
+    public void writeNewPayment(Payment newPayment) {
+        this.payments.child(newPayment.name).setValue(newPayment);
+    }
+
+    ValueEventListener paymentsListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            Log.w("Tag", "paymentsListener:onCancelled", databaseError.toException());
+        }
+    };
 
     public void writeJsonStream(OutputStream out, List<Payment> paymentList) throws IOException {
         JsonWriter writer = new JsonWriter(new OutputStreamWriter(out, "UTF-8"));
