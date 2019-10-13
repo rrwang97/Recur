@@ -71,6 +71,9 @@ public class CreatePayment extends AppCompatActivity {
 
             this.writeJsonStream(new FileOutputStream(currentPath), payments);
 
+            // TODO: 10/13/2019
+            // Write payment to file here
+
         } catch (Exception e) {
             System.out.println("Failed to create payment");
             System.out.println(e.toString());
