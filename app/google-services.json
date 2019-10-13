@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "314440823945",
+    "firebase_url": "https://recur-data-fdf96.firebaseio.com",
+    "project_id": "recur-data-fdf96",
+    "storage_bucket": "recur-data-fdf96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314440823945:android:eea2968e9d807247c04258",
+        "android_client_info": {
+          "package_name": "com.example.recur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314440823945-qd8nfnp152n1ip69ntldrsac9l83a6id.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recur",
+            "certificate_hash": "70df7ee8df8a594f4f11fdc759d56afd17b64e65"
+          }
+        },
+        {
+          "client_id": "314440823945-3j5enijd02qd8b5ood9cqdvr037okgvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAFh0yPkYZKMBufb4QwbEOPExalhxU4tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314440823945-3j5enijd02qd8b5ood9cqdvr037okgvd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
