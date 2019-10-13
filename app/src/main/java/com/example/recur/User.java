@@ -17,7 +17,7 @@ public class User {
         Map<String, Payment> paymentMap = new HashMap<>();
     }
 
-    public void addPayment(String name, double amount, int repeat, Date start, Date end) {
+    public void addPayment(String name, double amount, int repeat, Date start, String end) {
         Payment newPayment = new Payment(name, amount, repeat, start, end);
         paymentMap.put(name, newPayment);
     }

@@ -23,6 +23,6 @@ public class Payment {
 
     public String toString() {
         return "I'm paying " + this.name + " $" + this.amount + " every " + this.interval +
-                " until " + this.endDate + " for " + this.category;
+                " until " + this.endDate.toString() + " for " + this.category;
     }
 }

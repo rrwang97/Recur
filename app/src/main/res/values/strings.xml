@@ -14,5 +14,10 @@
     <string name="payment_endDate_text">until</string>
     <string name="payment_category_text">for</string>
     <string name="create_payment_button">Create Payment</string>
+    <string name="payment_name_hint">name</string>
+    <string name="payment_amount_hint">amount</string>
+    <string name="payment_interval_hint">interval</string>
+    <string name="payment_endDate_hint">MM/DD/YYYY</string>
+    <string name="payment_category_hint">category</string>
 
 </resources>
