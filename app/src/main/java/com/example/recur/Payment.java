@@ -6,13 +6,15 @@ public class Payment {
     String name;
     double amount;
     int interval;
+    Date startDate;
     Date endDate;
     String category;
 
-    public Payment(String name, double amount, int interval, Date endDate, String category) {
+    public Payment(String name, double amount, int interval, Date startDate, Date endDate, String category) {
         this.name = name;
         this.amount = amount;
         this.interval = interval;
+        this.startDate = startDate;
         this.endDate = endDate;
         this.category = category;
     }
@@ -26,17 +28,13 @@ public class Payment {
     }
 
     public String getRecur() {
-        if (this.recur % 7 != 0) {
-            return this.recur + "days";
-        } else if (this.recur % 365 == 0) {
-            return this.recur + "years";
+        if (this.interval % 7 != 0) {
+            return this.interval + "days";
+        } else if (this.interval % 365 == 0) {
+            return this.interval + "years";
         } else {
-            return this.recur + "weeks";
+            return this.interval + "weeks";
         }
-    }
-
-    public Payment paymentInfo() {
-        return this;
     }
 
     public String toString() {

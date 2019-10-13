@@ -36,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_payment, parent, false);
         MyViewHolder vHolder = new MyViewHolder(v);
-        return null;
+        return vHolder;
     }
 
     @Override

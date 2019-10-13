@@ -4,7 +4,6 @@
     <string name="title_payflows">Payflows</string>
     <string name="title_account">Account</string>
     <string name="create_account">Create Account</string>
-<<<<<<< HEAD
     <string name="title_activity_list_view">ListView</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -96,7 +95,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
-=======
 
     <string name="title_activity_create_payment">CreatePayment</string>
     <string name="dummy_button">Dummy Button</string>
@@ -113,5 +111,4 @@
     <string name="payment_endDate_hint">MM/DD/YYYY</string>
     <string name="payment_category_hint">category</string>
 
->>>>>>> 9f8ed5434fb878d9c67e522231b8b455edec68e1
 </resources>

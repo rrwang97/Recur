@@ -3,21 +3,38 @@ package com.example.recur;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.JsonReader;
+import android.util.JsonWriter;
 import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class CreatePayment extends AppCompatActivity {
+
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_payment);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
     }
 
     public void setPaymentValues(View view) {
@@ -37,7 +54,22 @@ public class CreatePayment extends AppCompatActivity {
             EditText categoryText = findViewById(R.id.categoryInput);
             String category = categoryText.getText().toString();
 
-            Payment newPayment = new Payment(name, amount, interval, endDate, category);
+            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+            Date startDate = new Date();
+
+            Payment newPayment = new Payment(name, amount, interval, startDate, endDate, category);
+
+            File dataFile = new File("PaymentData.txt");
+            if (!dataFile.createNewFile()) {
+                String currentPath = dataFile.getAbsolutePath();
+                List<Payment> payments = this.readJsonStream(new FileInputStream(currentPath));
+                payments.add(newPayment);
+            }
+            List<Payment> payments = new ArrayList<>();
+            payments.add(newPayment);
+            String currentPath = dataFile.getAbsolutePath();
+
+            this.writeJsonStream(new FileOutputStream(currentPath), payments);
 
         } catch (Exception e) {
             System.out.println("Failed to create payment");
@@ -46,5 +78,79 @@ public class CreatePayment extends AppCompatActivity {
                     5000);
             errorSnackbar.show();
         }
+    }
+
+    public void writeJsonStream(OutputStream out, List<Payment> paymentList) throws IOException {
+        JsonWriter writer = new JsonWriter(new OutputStreamWriter(out, "UTF-8"));
+        writer.setIndent("  ");
+        writeMessagesArray(writer, paymentList);
+        writer.close();
+    }
+
+    public void writeMessagesArray(JsonWriter writer, List<Payment> paymentList) throws IOException {
+        writer.beginArray();
+        for (Payment p : paymentList) {
+            writeObject(writer, p);
+        }
+        writer.endArray();
+    }
+
+    public void writeObject(JsonWriter writer, Payment p) throws IOException {
+        writer.beginObject();
+        writer.name("id").value(p.name);
+        writer.name("amount").value(p.amount);
+        writer.name("interval").value(p.interval);
+        writer.name("start").value(p.startDate.toString());
+        writer.name("end").value(p.endDate.toString());
+        writer.name("category").value(p.category);
+    }
+
+    public List<Payment> readJsonStream(InputStream in) throws Exception {
+        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        try {
+            return readPaymentsArray(reader);
+        } finally {
+            reader.close();
+        }
+    }
+
+    public List<Payment> readPaymentsArray(JsonReader reader) throws Exception {
+        List<Payment> payments = new ArrayList<>();
+
+        reader.beginArray();
+        while (reader.hasNext()) {
+            payments.add(readPayment(reader));
+        }
+        reader.endArray();
+        return payments;
+    }
+
+    public Payment readPayment(JsonReader reader) throws Exception {
+        String name = "";
+        double amount = 0.0;
+        int interval = 0;
+        Date startDate = new Date();
+        Date endDate = new Date();
+        String category = "";
+
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String rName = reader.nextName();
+            if (rName == "id") {
+                name = reader.nextString();
+            } else if (rName == "amount") {
+                amount = reader.nextDouble();
+            } else if (rName == "interval") {
+                interval = reader.nextInt();
+            } else if (rName == "startDate") {
+                startDate = new SimpleDateFormat("dd/MM/yyyy").parse(reader.nextString());
+            } else if (rName == "endDate") {
+                endDate = new SimpleDateFormat("MM/dd/yyyy").parse(reader.nextString());
+            } else {
+                category = reader.nextString();
+            }
+        }
+        reader.endObject();
+        return new Payment(name, amount, interval, startDate, endDate, category);
     }
 }
