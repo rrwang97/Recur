@@ -5,16 +5,16 @@ import java.util.Date;
 public class Payment {
     String name;
     double amount;
-    int recur;
-    Date startDate;
+    int interval;
     Date endDate;
+    String category;
 
-    public Payment(String nameIn, double amountIn, int repeat, Date start, Date end) {
-        name = nameIn;
-        amount = amountIn;
-        recur = repeat;
-        startDate = start;
-        endDate = end;
+    public Payment(String name, double amount, int interval, Date endDate, String category) {
+        this.name = name;
+        this.amount = amount;
+        this.interval = interval;
+        this.endDate = endDate;
+        this.category = category;
     }
 
     public String getName() {
@@ -37,5 +37,10 @@ public class Payment {
 
     public Payment paymentInfo() {
         return this;
+    }
+
+    public String toString() {
+        return "I'm paying " + this.name + " $" + this.amount + " every " + this.interval +
+                " until " + this.endDate.toString() + " for " + this.category;
     }
 }
