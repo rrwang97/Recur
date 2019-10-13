@@ -85,17 +85,7 @@ public class CreatePayment extends AppCompatActivity {
         this.payments.child(newPayment.name).setValue(newPayment);
     }
 
-    ValueEventListener paymentsListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError databaseError) {
-            Log.w("Tag", "paymentsListener:onCancelled", databaseError.toException());
-        }
-    };
 
     public void writeJsonStream(OutputStream out, List<Payment> paymentList) throws IOException {
         JsonWriter writer = new JsonWriter(new OutputStreamWriter(out, "UTF-8"));

@@ -20,14 +20,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     Context mContext;
     List<Payment> mData;
 
-    public RecyclerViewAdapter(Context mContext, Map<String, Payment> mData) {
-        Set<String> keys = mData.keySet();
-        List<Payment> data = new ArrayList<>();
-        for (String k: keys){
-            data.add(mData.remove(k));
-        }
+    public RecyclerViewAdapter(Context mContext, List<Payment> mData) {
         this.mContext = mContext;
-        this.mData = data;
+        this.mData = mData;
     }
 
     @NonNull
