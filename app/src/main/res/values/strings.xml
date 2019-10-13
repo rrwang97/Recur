@@ -12,6 +12,7 @@
     <string name="payment_amount_text">$</string>
     <string name="payment_interval_text">every</string>
     <string name="payment_endDate_text">until</string>
-    <string name="payment_category_text">until</string>
+    <string name="payment_category_text">for</string>
+    <string name="create_payment_button">Create Payment</string>
 
 </resources>
