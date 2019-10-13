@@ -39,6 +39,9 @@ public class CreatePayment extends AppCompatActivity {
 
             Payment newPayment = new Payment(name, amount, interval, endDate, category);
 
+            // TODO: 10/13/2019
+            // Write payment to file here
+
         } catch (Exception e) {
             System.out.println("Failed to create payment");
             System.out.println(e.toString());
