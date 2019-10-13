@@ -8,28 +8,81 @@
     android:background="#FFFFFF"
     tools:context=".CreatePayment">
 
-    <TextView
-        android:id="@+id/payment_name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/payment_name_text"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="204dp"
+        android:layout_height="679dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/payment_amount_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/payment_amount_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payment_name_text" />
+        <TextView
+            android:id="@+id/payment_name_text"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:text="@string/payment_name_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/payment_"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payment_amount_text" />
+        <TextView
+            android:id="@+id/payment_amount_text"
+            android:layout_width="78dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_amount_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payment_name_text" />
+
+        <TextView
+            android:id="@+id/payment_interval_text"
+            android:layout_width="77dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_interval_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payment_amount_text" />
+
+        <TextView
+            android:id="@+id/payment_endDate_text"
+            android:layout_width="77dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_endDate_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payment_interval_text" />
+
+        <TextView
+            android:id="@+id/payment_category_text"
+            android:layout_width="70dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_category_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payment_endDate_text" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText"
+            android:layout_width="67dp"
+            android:layout_height="37dp"
+            android:hint="hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.543"
+            app:layout_constraintStart_toEndOf="@+id/payment_name_text"
+            tools:layout_editor_absoluteY="11dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/payment_amount_text"
+            app:layout_constraintTop_toBottomOf="@+id/textInputEditText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
