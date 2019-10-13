@@ -1,5 +1,6 @@
 package com.example.recur;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -27,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
+
+//    public void createPayment(View view) {
+//        Intent intent = new Intent(CreatePayment.class);
+//        startActivity(intent);
+//    }
 }

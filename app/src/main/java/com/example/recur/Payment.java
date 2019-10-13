@@ -17,6 +17,24 @@ public class Payment {
         endDate = end;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getAmount() {
+        return this.amount + "/";
+    }
+
+    public String getRecur() {
+        if (this.recur % 7 != 0) {
+            return this.recur + "days";
+        } else if (this.recur % 365 == 0) {
+            return this.recur + "years";
+        } else {
+            return this.recur + "weeks";
+        }
+    }
+
     public Payment paymentInfo() {
         return this;
     }

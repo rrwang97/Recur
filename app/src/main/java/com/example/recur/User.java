@@ -10,7 +10,7 @@ public class User {
     String nickname;
     Map<String, Payment> paymentMap;
 
-    public void createUser(String name, String pass, String nicknameIn) {
+    public User(String name, String pass, String nicknameIn) {
         username = name;
         password = pass;
         nickname = nicknameIn;
@@ -20,5 +20,9 @@ public class User {
     public void addPayment(String name, double amount, int repeat, Date start, Date end) {
         Payment newPayment = new Payment(name, amount, repeat, start, end);
         paymentMap.put(name, newPayment);
+    }
+
+    public void removePayment(String name) {
+        paymentMap.remove(name);
     }
 }

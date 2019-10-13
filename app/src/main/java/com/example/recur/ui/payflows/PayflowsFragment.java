@@ -1,4 +1,4 @@
-package com.example.recur.ui.dashboard;
+package com.example.recur.ui.payflows;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,25 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recur.R;
 
-public class DashboardFragment extends Fragment {
+public class PayflowsFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private PayflowsViewModel payflowsViewModel;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter rAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
+        payflowsViewModel =
+                ViewModelProviders.of(this).get(PayflowsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_payflows, container, false);
-        final TextView textView = root.findViewById(R.id.text_payflows);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
+
 }

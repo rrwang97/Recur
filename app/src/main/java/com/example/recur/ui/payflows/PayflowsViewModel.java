@@ -1,14 +1,14 @@
-package com.example.recur.ui.dashboard;
+package com.example.recur.ui.payflows;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class PayflowsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public PayflowsViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is payflows fragment");
     }
